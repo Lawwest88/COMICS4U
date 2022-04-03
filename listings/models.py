@@ -14,3 +14,8 @@ class Listing(models.Model):
     posted = models.BooleanField(default=False)
     created = models.DateTimeField(auto_now_add=True)
     last_modified = models.DateTimeField(auto_now=True)
+
+    # image
+    image = models.ImageField(default=None)
+
+    # location 
