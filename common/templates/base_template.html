@@ -1,0 +1,33 @@
+{% load static %}
+<html>
+    <head>
+        <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
+        <script src="{% static 'bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+        <title>{% block title %}{% endblock %}</title>
+    </head>
+    <body>
+        <nav class="navbar navbar-light bg-light">
+            <div class="container-fluid">
+              <a class="navbar-brand" href="#">People with Pets App</a>
+              <div class="d-flex">
+                {% if user.is_authenticated %}
+                <div class="dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Hello {{ user.first_name }}
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="{% url 'logout' %}">Logout</a></li>
+                    </ul>
+                </div>
+                {% else %}
+                    <a class="btn btn-primary btn-sm" role="button" href="{% url 'login' %}">Log In</a>
+                {% endif %}
+              </div>
+            </div>
+        </nav>
+        <div id="content" class="container">
+            <h2 id=title>{% block page_title %}{% endblock %}</h2>
+            {% block content %}{% endblock %}
+        </div>
+    </body>
+</html>
